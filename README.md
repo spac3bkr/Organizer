@@ -1,2 +1,2 @@
 # Organizer
-Organize your files and folders within After effects project
+Organize your files and folders within your After Effects projects.
