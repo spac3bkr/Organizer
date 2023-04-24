@@ -3,7 +3,7 @@
 var selectedItems = app.project.selection;
 
 for (var i = 0; i < selectedItems.length; i++) {
-  
+
     var item = selectedItems[i];
 
     if(item.typeName != "Composition"){//CHECK IF INSTANCEOF WORKS
