@@ -115,7 +115,7 @@ function arrange(){
                 var format = String(item.file);
                 var format = format.substring(format.lastIndexOf("."));
 
-                if(format == '.png' || format == '.jpg' || format == '.gif' || format == '.bmp' || format == '.tga' || format == '.jpeg' || format == '.psd'){
+                if(format == '.png' || format == '.jpg' || format == '.gif' || format == '.bmp' || format == '.tga' || format == '.jpeg' || format == '.psd' || format == '.psb'){
 
                     item.parentFolder = imagesFolder;
                 
