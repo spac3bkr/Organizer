@@ -14,6 +14,42 @@ for (var i = 0; i < selectedItems.length; i++) {
             
 }
 
+// DIALOG
+// ======
+/*
+var dialog = new Window("dialog"); 
+    dialog.text = "Organizer setup"; 
+    dialog.orientation = "column"; 
+    dialog.alignChildren = ["center","top"]; 
+    dialog.spacing = 10; 
+    dialog.margins = 16; 
+
+var panel1 = dialog.add("panel", undefined, undefined, {name: "panel1"}); 
+    panel1.orientation = "row"; 
+    panel1.alignChildren = ["left","top"]; 
+    panel1.spacing = 10; 
+    panel1.margins = 10; 
+
+var checkboxReduce = panel1.add("checkbox", undefined, undefined, {name: "checkbox1"}); 
+    checkboxReduce.text = "Reduce files"; 
+    if(selectedItems.length == 0){
+
+        checkboxReduce.enabled = false; 
+
+    }
+
+var checkboxCollect = panel1.add("checkbox", undefined, undefined, {name: "checkbox3"}); 
+    checkboxCollect.text = "Collect project"; 
+
+var buttonOk = dialog.add("button", undefined, undefined, {name: "reduceInput_ok"}); 
+    buttonOk.text = "Ok"; 
+    buttonOk.alignment = ["center","top"]; 
+
+dialog.show();
+
+buttonOk.onClick = arrange();*/
+
+
 // ARRANGE FUNCTION
 // ================
 function arrange(){
@@ -23,8 +59,8 @@ function arrange(){
 
     //SAVE BEFORE ARRANGE
     //===================
-    var currentProjectPath = app.project.file;
-    app.project.save(currentProjectPath);
+    //var currentProjectPath = app.project.file;
+    //app.project.save(currentProjectPath);
 
 
     //PUSH ITEMS TO ARRAY
@@ -80,7 +116,7 @@ function arrange(){
                 var format = String(item.file);
                 var format = format.substring(format.lastIndexOf("."));
 
-                if(format == '.png' || format == '.jpg' || format == '.gif' || format == '.bmp' || format == '.tga' || format == '.jpeg' || format == '.psd' || format == '.psb'){
+                if(format == '.png' || format == '.jpg' || format == '.gif' || format == '.bmp' || format == '.tga' || format == '.jpeg' || format == '.psd'){
 
                     item.parentFolder = imagesFolder;
                 
@@ -124,24 +160,30 @@ function arrange(){
 
 }
 
-//APPLY ARRANGE FUNCTION
-//======================
-arrange();
 
-//REMOVE UNUSED FILES
-//===================
-app.project.removeUnusedFootage();
+if(selectedItems.length > 0){
 
-//CONSOLIDATE
-//===========
-app.project.consolidateFootage();
+    arrange();
 
-//REDUCE
-//======
-app.project.reduceProject(selectedItems);
+    //REMOVE UNUSED FILES
+    //===================
+    app.project.removeUnusedFootage();
 
+    //CONSOLIDATE
+    //===========
+    app.project.consolidateFootage();
 
+    //REDUCE
+    //======
+    app.project.reduceProject(selectedItems);
 
+    //COLLECT
+    //=======
+    //if(checkboxCollect.value == true){
+    app.executeCommand(2482);
+    //} 
 
-
+}else{
+    alert("Select at least 1 comp.");
+}
 
