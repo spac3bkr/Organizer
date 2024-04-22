@@ -14,41 +14,6 @@ for (var i = 0; i < selectedItems.length; i++) {
             
 }
 
-// DIALOG
-// ======
-var dialog = new Window("dialog"); 
-    dialog.text = "Organizer setup"; 
-    dialog.orientation = "column"; 
-    dialog.alignChildren = ["center","top"]; 
-    dialog.spacing = 10; 
-    dialog.margins = 16; 
-
-var panel1 = dialog.add("panel", undefined, undefined, {name: "panel1"}); 
-    panel1.orientation = "row"; 
-    panel1.alignChildren = ["left","top"]; 
-    panel1.spacing = 10; 
-    panel1.margins = 10; 
-
-var checkboxReduce = panel1.add("checkbox", undefined, undefined, {name: "checkbox1"}); 
-    checkboxReduce.text = "Reduce files"; 
-    if(selectedItems.length == 0){
-
-        checkboxReduce.enabled = false; 
-
-    }
-
-var checkboxCollect = panel1.add("checkbox", undefined, undefined, {name: "checkbox3"}); 
-    checkboxCollect.text = "Collect project"; 
-
-var buttonOk = dialog.add("button", undefined, undefined, {name: "reduceInput_ok"}); 
-    buttonOk.text = "Ok"; 
-    buttonOk.alignment = ["center","top"]; 
-
-dialog.show();
-
-buttonOk.onClick = arrange();
-
-
 // ARRANGE FUNCTION
 // ================
 function arrange(){
@@ -159,6 +124,10 @@ function arrange(){
 
 }
 
+//APPLY ARRANGE FUNCTION
+//======================
+arrange();
+
 //REMOVE UNUSED FILES
 //===================
 app.project.removeUnusedFootage();
@@ -169,58 +138,8 @@ app.project.consolidateFootage();
 
 //REDUCE
 //======
-if(checkboxReduce.value == true){
+app.project.reduceProject(selectedItems);
 
-    app.project.reduceProject(selectedItems);
-
-} 
-
-//COLLECT
-//=======
-if(checkboxCollect.value == true){
-
-    app.executeCommand(2482);
-
-} 
-
-
-/*
-//COLLECT via chat gpt
-//=======
-
-// Define the destination folder path
-var destinationFolder = "C:/Users/Username/Documents/Project Files/";
-
-// Create a new folder in the destination folder
-var newFolder = new Folder(destinationFolder + app.project.name);
-newFolder.create();
-
-// Collect all project items
-var items = app.project.items;
-
-// Loop through all project items
-for (var i = 1; i <= items.length; i++) {
-  var currentItem = items[i];
-  
-  // Check if the item is a composition
-  if (currentItem instanceof CompItem) {
-    
-    // Save the composition as a new project file
-    var newProjectPath = newFolder.fsName + "/" + currentItem.name + ".aep";
-    app.project.save(newProjectPath);
-    
-  } else if (currentItem instanceof FootageItem) {
-    
-    // Check if the footage item is a file
-    if (currentItem.file != null) {
-      
-      // Copy the file to the destination folder
-      var currentFilePath = currentItem.file.fsName;
-      var newFilePath = newFolder.fsName + "/" + currentItem.name;
-      File(currentFilePath).copy(newFilePath);
-    }
-  }
-}*/
 
 
 
