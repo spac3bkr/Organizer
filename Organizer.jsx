@@ -180,7 +180,7 @@ if(selectedItems.length > 0){
     //COLLECT
     //=======
     //if(checkboxCollect.value == true){
-    app.executeCommand(2482);
+    //app.executeCommand(2482);
     //} 
 
 }else{
