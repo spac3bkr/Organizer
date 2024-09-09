@@ -99,6 +99,9 @@ function arrange(){
     var compsFolder = app.project.items.addFolder("Comps");
     compsFolder.parentFolder = assetsFolder; 
 
+    var modelFolder = app.project.items.addFolder("3D");
+    modelFolder.parentFolder = assetsFolder; 
+
     //ITERATE ARRAYS AND MOVE TO FOLDERS
     //==================================
     for (var i = 0; i < footage.length; i++) {
@@ -135,6 +138,10 @@ function arrange(){
                 }else if(format == '.swf'){
 
                     item.parentFolder = swfFolder;
+
+                }else if(format == '.glb'){
+
+                    item.parentFolder = modelFolder;
 
                 }
       
