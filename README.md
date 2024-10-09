@@ -10,4 +10,5 @@ Just select the comps that you want to keep and the system will arrange all the 
     - Audio
     - Swf
     - Comps
+    - 3D files
     
